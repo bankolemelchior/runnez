@@ -37,6 +37,14 @@ public class RunRepository {
     }
   }
 
+  // void delete(Integer id) {
+  //   Optional<Run> existingRun = findById(id);
+  //   if (existingRun.isPresent()) {
+  //     runs.remove(existingRun);
+  //   }
+
+  // }
+
   @PostConstruct
   private void init() {
     runs.add(new Run(1," Monday Morning run", LocalDateTime.now(), LocalDateTime.now().plus(30, ChronoUnit.MINUTES), 3, Location.INDOOR));
