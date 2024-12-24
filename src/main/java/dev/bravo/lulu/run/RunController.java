@@ -1,7 +1,8 @@
 package dev.bravo.lulu.run;
 
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.server.ResponseStatusException;
+
+import jakarta.validation.Valid;
 
 import java.util.List;
 import java.util.Optional;
@@ -13,8 +14,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 
@@ -47,14 +46,14 @@ public class RunController {
   //Post
   @ResponseStatus(HttpStatus.CREATED)
   @PostMapping("")
-  void create(@RequestBody Run run) {
+  void create(@Valid @RequestBody Run run) {
     runRepository.create(run);
   
   }
     //Put
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @PutMapping("/{id}")
-    void update(@RequestBody Run run, @PathVariable Integer id) {
+    void update(@Valid @RequestBody Run run, @PathVariable Integer id) {
       runRepository.update(run, id);
     }
 
