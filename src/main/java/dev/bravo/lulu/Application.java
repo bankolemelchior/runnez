@@ -12,6 +12,7 @@ import org.springframework.context.annotation.Bean;
 
 import dev.bravo.lulu.run.Location;
 import dev.bravo.lulu.run.Run;
+import dev.bravo.lulu.run.RunRepository;
 
 
 @SpringBootApplication
@@ -26,11 +27,11 @@ public class Application {
 	}
 
 	@Bean
-	CommandLineRunner runner() {
+	CommandLineRunner runner(RunRepository runRepository) {
 		return args -> {
 			Run run = new Run(1, "First Run", LocalDateTime.now(), LocalDateTime.now().plus(1, ChronoUnit.HOURS), 5, Location.OUTDOOR);
-
-			log.info("Run " + run);
+			runRepository.create(run);
+			// log.info("Run " + run);
 		};
 	}
 
